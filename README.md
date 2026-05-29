@@ -6,8 +6,10 @@
 Snowflake account with CoCo enabled 
 CoCo CLI installed 
    https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-cli 
-   `cortex --version` to verify
-phData Toolkit Installed (`toolkit --version` to verify)
+   (`cortex --version` to verify)
+phData Toolkit Installed 
+   https://toolkit.phdata.io/docs/toolkit-cli#installation:~:text=contact%20us.-,Installation,-The%20Toolkit%20CLI
+   (`toolkit --version` to verify)
 
 ---
 
@@ -18,7 +20,7 @@ This hands-on lab teaches you to use **CoCo** in two environments to accelerate 
 | Part | Environment | What You'll Do | Time |
 |------|-------------|----------------|------|
 | **1** | Snowsight (Web IDE) | Debug and extend a Python notebook that builds an ML model on sales data | 30 min |
-| **2** | CoCo CLI (Terminal) | Translate MS SQL Code into Snowflake SQL and dbt Models using phData Forge and the phData Toolkit | 45 min |
+| **2** | CoCo CLI (Terminal) | Translate MS SQL Code into Snowflake SQL and dbt Models using phData Forge | 45 min |
 
 ---
 
@@ -120,6 +122,8 @@ By the end of Part 1, you've taken a baseline model notebook, fixed errors, adde
 ## Part 2: CoCo CLI — Translating SQL with Forge Skills (20 min)
 
 ### Context
+
+Your team has a separate use case where they need to migrate an onprem SQL Server into Snowflake. We have the DDL to create the database and transformation layer, but it's in the MSSQL dialect.
 
 `phData Forge` is an AI-native project delivery system that uses autonomous AI agents to automate code generation, testing, and legacy data migrations. By handling the heavy lifting of pipeline development, it shifts human data engineers into role-focused validators to compress project timelines by up to 70%
 
