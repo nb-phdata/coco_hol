@@ -174,7 +174,7 @@ Takes the current Snowflake connection for Cortex and uses it to configure the p
 #### Step 5: Optimize the Script for Snowflake
 
 **Example prompt:**
-> *Identify and explain any performance issues medallion_financial_services_snowflake.sql will have on snowflake, ranking them critical, high, medium and low priority* 
+> *Identify and explain any performance issues the translated output file will have on snowflake, ranking them critical, high, medium and low priority* 
 
 **Example prompt:**
 > *Please fix the critical and high priority performance issues* 
@@ -207,7 +207,7 @@ CoCo will run the scripts using the Toolkit execute skill and validate that ther
 ### Key Takeaways
 
 1. **CoCo in Snowsight** accelerates notebook development by helping you debug, generate, and explain code inline
-2. **phData Forge** --TODO
+2. **phData Forge** uses AI-native autonomous agents to automate complex data migrations, such as translating MS SQL Server scripts and stored procedures into optimized Snowflake SQL and dbt models, drastically compressing project timelines.
 
 ### Next Steps
 

@@ -30,7 +30,7 @@ Retrieve the active Snowflake connection details from Cortex Code:
 
 1. Run `cortex connections list` to see available connections
 2. Identify the currently active connection (marked as active or set via `cortex connections set`)
-3. Extract: account URL, database, schema, warehouse, role, and username
+3. Extract: account URL, database, schema, warehouse, role, password, and username
 
 If no active connection exists, inform the user they need to set one up first:
 ```
@@ -39,6 +39,8 @@ Set one up with: cortex connections set <connection-name>
 ```
 
 **STOP** if no connection is available.
+
+Ask the user for the current password if unavailable in current connections.
 
 ### Step 3: Build and Write Configuration
 
@@ -57,7 +59,7 @@ ds {
       connection {
         url = "jdbc:snowflake://<account>.snowflakecomputing.com/?db=<database>&schema=<schema>&warehouse=<warehouse>&role=<role>"
         username = "<username>"
-        password = ${SNOWFLAKE_PASSWORD}
+        password = "<password>
       }
     }
   }
@@ -67,7 +69,6 @@ ds {
 **Rules:**
 - Preserve all other existing configuration blocks (match, advisor, provision, sql, etc.)
 - Only update the `ds.datasources.snowflake.connection` section
-- Keep `password = ${SNOWFLAKE_PASSWORD}` as an environment variable reference (do NOT hardcode passwords)
 - If the account URL contains `.snowflakecomputing.com` already, do not double it
 
 ### Step 4: Validate Connection
@@ -93,4 +94,4 @@ Test that the configuration works:
 
 ## Output
 
-Updated `toolkit.conf` with a working JDBC connection derived from the current Cortex Code Snowflake connection. The user's password remains referenced as `${SNOWFLAKE_PASSWORD}` environment variable.
+Updated `toolkit.conf` with a working JDBC connection derived from the current Cortex Code Snowflake connection.

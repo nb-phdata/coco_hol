@@ -1,0 +1,16 @@
+.DS_Store
+.envrc
+.env
+
+logs/
+snapshots/
+
+*.log
+*.html
+.toolkit-tutorial*
+.claude*
+docs*
+log-analysis*
+.toolkit-metadata
+toolkit.conf
+lab/part2_sql/output*
