@@ -1,6 +1,6 @@
 # CoCo Hands-On Lab: From Snowsight to CLI
 
-**Duration:** 75 minutes  
+**Duration:** 90 minutes  
 **Level:** Intermediate  
 **Prerequisites:** 
 Snowflake account with CoCo enabled 
@@ -72,7 +72,7 @@ toolkit --version
 
 ---
 
-## Part 1: CoCo in Snowsight (40 min)
+## Part 1: CoCo in Snowsight (45 min)
 
 ### Context
 
@@ -119,7 +119,7 @@ By the end of Part 1, you've taken a baseline model notebook, fixed errors, adde
 
 ---
 
-## Part 2: CoCo CLI — Translating SQL with Forge Skills (20 min)
+## Part 2: CoCo CLI — Translating SQL with Forge Skills (45 min)
 
 ### Context
 
