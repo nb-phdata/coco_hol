@@ -3,13 +3,14 @@
 **Duration:** 90 minutes  
 **Level:** Intermediate  
 **Prerequisites:** 
-Snowflake account with CoCo enabled 
-CoCo CLI installed 
-   https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-cli 
-   (`cortex --version` to verify)
-phData Toolkit Installed 
-   https://toolkit.phdata.io/docs/toolkit-cli#installation:~:text=contact%20us.-,Installation,-The%20Toolkit%20CLI
-   (`toolkit --version` to verify)
+* Snowflake account with CoCo enabled 
+* CoCo CLI installed 
+  * https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-cli 
+  * (`cortex --version` to verify)
+* phData Toolkit Installed 
+  * Follow the steps in /lab/setup/toolkit_install.md
+  * OR https://toolkit.phdata.io/docs/toolkit-cli#installation:~:text=contact%20us.-,Installation,-The%20Toolkit%20CLI
+  * (`toolkit --version` to verify)
 
 ---
 
@@ -40,6 +41,7 @@ This hands-on lab teaches you to use **CoCo** in two environments to accelerate 
         └── medallion_financial_services.sql   # SQL script for migration lab data
     ├── setup/
         └── setup.sql   # SQL Script for part 1 (if needed)
+        └── toolkit_install.md   # Toolkit Installation readme
 ```
 
 ---
@@ -142,7 +144,15 @@ Your team has a separate use case where they need to migrate an onprem SQL Serve
    ```bash
    cortex
    ```
-5. Verify your connection: #TODO create new
+5. Create a new connection:
+* **First Time Opening Cortex Will Trigger the Set Up Wizard**
+   * Follow the prompts to configure the connection.
+* **Additional connections can be added by manually adding them to the configuration file:**
+   ```bash
+   open -e ~/.snowflake/connections.toml
+   ```
+
+6. Verify your connection: 
    ```
    /status
    ```
