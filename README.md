@@ -290,12 +290,12 @@ Note: Check for data in the tables.
 | Component | Location | Purpose |
 |-----------|----------|---------|
 | Fixed & extended notebook | Snowsight | Debugged, added PCA, experimentation, and model registry deployment |
-| Translated MSQL to Snowflake | Optimized SQL for Snowflake | Converted Stored Procedures to dbt Models |
+| Dimensional model + dbt project | Snowsight | Profiled Northwind with Toolkit scan, designed a Kimball model, and generated a dbt project with CoCo |
 
 ### Key Takeaways
 
 1. **CoCo in Snowsight** accelerates notebook development by helping you debug, generate, and explain code inline
-2. **phData Forge** uses AI-native autonomous agents to automate complex data migrations, such as translating MS SQL Server scripts and stored procedures into optimized Snowflake SQL and dbt models, drastically compressing project timelines.
+2. **phData Toolkit + CoCo** accelerates data engineering by combining automated DDL scanning and metadata discovery with AI-guided dimensional modeling and dbt project generation — compressing days of source system analysis into a single session.
 
 ### Next Steps
 
