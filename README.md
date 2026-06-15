@@ -87,6 +87,11 @@ Your team has a Python notebook that loads sales data, engineers features, and t
 3. Import the provided notebook: `lab/part1_notebook/sales_churn_model.ipynb`
 4. Select the **Python 3 (Anaconda)** kernel and attach a warehouse
 
+### Exercise 0: Explain the Notebook (1 min)
+
+**Example prompt:**
+> *Can you summarize what this notebook does*
+
 ### Exercise 1: Fix Errors and Get Best Practices (10 min)
 
 After connecting to a compute pool, ask CoCo to review and fix the notebook.
