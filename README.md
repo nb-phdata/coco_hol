@@ -1,27 +1,25 @@
-# CoCo Hands-On Lab: From Snowsight to CLI
+# CoCo Hands-On Lab: Snowflake Snowsight
 
-**Duration:** 90 minutes  
-**Level:** Intermediate  
-**Prerequisites:** 
-* Snowflake account with CoCo enabled 
-* CoCo CLI installed 
-  * https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code-cli 
-  * (`cortex --version` to verify)
+**Duration:** 90 minutes
+**Level:** Intermediate
+**Prerequisites:**
+* Snowflake account with CoCo enabled
 * phData Toolkit Installed 
   * Follow the steps in /lab/setup/toolkit_install.md
   * OR https://toolkit.phdata.io/docs/toolkit-cli#installation:~:text=contact%20us.-,Installation,-The%20Toolkit%20CLI
   * (`toolkit --version` to verify)
+* phData Toolkit configured to Snowflake and Northwinds database
 
 ---
 
 ## Overview
 
-This hands-on lab teaches you to use **CoCo** in two environments to accelerate your development workflow:
+This hands-on lab teaches you to use **CoCo** in Snowflake Snowsight to accelerate your development workflow:
 
 | Part | Environment | What You'll Do | Time |
 |------|-------------|----------------|------|
 | **1** | Snowsight (Web IDE) | Debug and extend a Python notebook that builds an ML model on sales data | 30 min |
-| **2** | CoCo CLI (Terminal) | Translate MS SQL Code into Snowflake SQL and dbt Models using phData Forge | 45 min |
+| **2** | Snowsight (Web IDE) | Understand what is in a source system using phData Forge and develop dbt Models using CoCo | 30 min |
 
 ---
 
@@ -29,52 +27,22 @@ This hands-on lab teaches you to use **CoCo** in two environments to accelerate 
 
 ```
 .
-├── README.md                          # Lab guide and instructions
+├── README.md   # Lab guide and instructions
 └── .cortex/
     ├── skills/
           ├── toolkit-configure
-            └── SKILL.md   #toolkit configuration skill for CoCo  
+            └── SKILL.md   # toolkit configuration skill for CoCo  
 └── lab/
     ├── part1_notebook/
-    │   └── sales_churn_model.ipynb    # Starter notebook with intentional bugs
-    └── part2_cli/
-        └── medallion_financial_services.sql   # SQL script for migration lab data
+    │   └── sales_churn_model.ipynb   # Starter notebook with intentional bugs
     ├── setup/
-        └── setup.sql   # SQL Script for part 1 (if needed)
+        └── setup.sql   # SQL Script for part 1
         └── toolkit_install.md   # Toolkit Installation readme
 ```
 
 ---
 
-## Setup
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/justindelisi-phdata/coco_hol.git
-cd COCO_HOL
-```
-
-### 2. Run the SQL setup
-
-(If needed, this should already be completed on your accounts)
-Execute `setup.sql` in your Snowflake account to create the required database, schema, and sample data.
-
-### 3. Verify CoCo CLI
-
-```bash
-cortex --version
-```
-
-### 4. Verify phData Toolkit CLI
-
-```bash
-toolkit --version
-```
-
----
-
-## Part 1: CoCo in Snowsight (45 min)
+## Part 1: Debugging and Extending an ML Model using CoCo in Snowsight (30 min)
 
 ### Context
 
@@ -83,9 +51,11 @@ Your team has a Python notebook that loads sales data, engineers features, and t
 ### Setup (5 min)
 
 1. Log into Snowsight
-2. Navigate to **Projects > Notebooks**
-3. Import the provided notebook: `lab/part1_notebook/sales_churn_model.ipynb`
-4. Select the **Python 3 (Anaconda)** kernel and attach a warehouse
+2. Navigate to **Projects > Workspaces**
+3. Prompt CoCo to create a GIT API Integration and import the provided notebook into a new Workspace:
+   `https://github.com/nb-phdata/coco_hol/blob/main/lab/part1_notebook/sales_churn_model.ipynb`
+5. Prompt CoCo to select the **Python 3 (Anaconda)** kernel and attach a warehouse
+6. Prompt CoCo to use the same GIT API Integration to import and execute `setup.sql` to create the required database, schema, and sample data: https://github.com/nb-phdata/coco_hol/blob/main/lab/setup/setup.sql
 
 ### Exercise 0: Explain the Notebook (1 min)
 
@@ -126,13 +96,19 @@ By the end of Part 1, you've taken a baseline model notebook, fixed errors, adde
 
 ---
 
-## Part 2: CoCo CLI — Translating SQL with Forge Skills (45 min)
+## Part 2: Data Discovery using phData Forge and dbt Model Development using CoCo in Snowsight (30 min)
 
 ### Context
 
 Your team has a separate use case where they need to migrate an onprem SQL Server into Snowflake. We have the DDL to create the database and transformation layer, but it's in the MSSQL dialect.
 
 `phData Forge` is an AI-native project delivery system that uses autonomous AI agents to automate code generation, testing, and legacy data migrations. By handling the heavy lifting of pipeline development, it shifts human data engineers into role-focused validators to compress project timelines by up to 70%
+
+### Open Terminal and Verify phData Toolkit CLI
+
+```bash
+toolkit --version
+```
 
 ### Setup (5 min)
 
