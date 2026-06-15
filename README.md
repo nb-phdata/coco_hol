@@ -125,32 +125,112 @@ toolkit --version
 
 1. Log into Snowsight
 2. Navigate to **Projects > Workspaces** and create a new Notebook
-3. Prompt CoCo to use the same GIT API Integration to import and execute `northwind_setup.sql` to create the required database, schema, and sample data: https://github.com/nb-phdata/coco_hol/blob/main/lab/setup/setup.sql
+3. Prompt CoCo to use the same GIT API Integration to import and execute `northwind_setup.sql` to create the required database, schema, and sample data: `https://github.com/nb-phdata/coco_hol/blob/main/lab/setup/setup.sql`
 4. Open your terminal
 5. Navigate to your project directory:
    ```bash
    cd COCO_HOL
    ```
-6. Create a new toolkit instance within the directory:
+7. Install the phData CLI
+   ```
+   brew install toolkit-cli
+   ```
+   or
+   ```
+   brew tap phdata/toolkit
+   ```
+8. Create a new toolkit instance within the directory:
    ```bash
    toolkit init
    ```
-7. Start CoCo:
-   ```bash
-   cortex
-   ```
-8. Create a new connection:
-* **First Time Opening Cortex Will Trigger the Set Up Wizard**
-   * Follow the prompts to configure the connection.
-* **Additional connections can be added by manually adding them to the configuration file:**
-   ```bash
-   open -e ~/.snowflake/connections.toml
-   ```
-
-6. Verify your connection: 
-   ```
-   /status
-   ```
+9. Now we will configure the phData Toolkit to Snowflake and the Northwinds database:
+   a. Open `toolkit.conf`
+   b. Add the following connection:
+      ```
+      connections {
+        snowflake {
+          url = "jdbc:snowflake://<org-name>-<account-name>.snowflakecomputing.com"
+          properties {
+            user = "<your_snowflake_login_name"
+            role = "ACCOUNTADMIN" or <your-role>
+            warehouse = "COMPUTE_WH" or <your-warehouse>
+            private_key_file = ${PRIVATE_KEY_FILE}
+            private_key_file_pwd = ${PRIVATE_KEY_FILE_PWD}
+          }
+        }
+      }
+      
+      ds {
+        datasources {
+          snowflake {
+            connection = ${connections.snowflake}
+          }
+        }
+      }
+      ```
+   c. Generate a 2048-bit RSA private key in PKCS#8 format and store it in a secure local folder such as ~/.snowflake/keys/rsa_key.p8.
+      ```
+      openssl genrsa 2048 | openssl pkcs8 -topk8 -v2 des3 -inform PEM -out rsa_key.p8
+      mkdir -p ~/.snowflake/keys
+      mv rsa_key.p8 ~/.snowflake/keys/
+      chmod 600 ~/.snowflake/keys/rsa_key.p8
+      ```
+   d. Generate the matching public key from that private key and save it as rsa_key.pub in the same folder.
+      ```
+      openssl rsa -in ~/.snowflake/keys/rsa_key.p8 -pubout -out ~/.snowflake/keys/rsa_key.pub
+      chmod 644 ~/.snowflake/keys/rsa_key.pub
+      ```
+   e. Assign the public key to the Snowflake user with ALTER USER ... SET RSA_PUBLIC_KEY='...', using only the body of the public key and excluding the BEGIN/END PUBLIC KEY lines.
+      ```
+      PUBK=$(grep -v "PUBLIC KEY" ~/.snowflake/keys/rsa_key.pub | tr -d '\n')
+      echo "$PUBK"
+      ```
+   f. Now, enter into the Snowsight webpage and prompt CoCo:
+      ```
+      ALTER USER <YOUR_SNOWFLAKE_USER> SET RSA_PUBLIC_KEY='paste_one_line_value_here';
+      ```
+   g. Verify the key pair by comparing the Snowflake user fingerprint from DESC USER <user> to the fingerprint generated locally from rsa_key.pub:
+      ```
+      DESC USER YOUR_SNOWFLAKE_USER;
+      ```
+   h. In the terminal, ensure the same value is returned, using:
+      ```
+      openssl rsa -pubin -in ~/.snowflake/keys/rsa_key.pub -outform DER | openssl dgst -sha256 -binary | openssl enc -base64
+      ```
+   i. Best practice is to use environment variables rather than hard-coding the secrets in `toolkit.conf`.
+      ```
+      export PRIVATE_KEY_FILE="$HOME/.snowflake/keys/rsa_key.p8"
+      export PRIVATE_KEY_FILE_PWD="your-passphrase"
+      export CONNECTION_ROLE="ACCOUNTADMIN"
+      ```
+      Your `toolkit.conf` should now look like:
+      ```
+      connections {
+        snowflake {
+          url = "jdbc:snowflake://<orgname>-<accountname>.snowflakecomputing.com"
+          properties {
+            user = "<your_snowflake_login_name>"
+            role = ${CONNECTION_ROLE}
+            warehouse = "COMPUTE_WH" or <your-warehouse>
+            private_key_file = ${PRIVATE_KEY_FILE}
+            private_key_file_pwd = ${PRIVATE_KEY_FILE_PWD}
+          }
+        }
+      }
+      
+      ds {
+        datasources {
+          snowflake {
+            connection = ${connections.snowflake}
+          }
+        }
+      }
+     ```
+10. Validate the setup by running a Toolkit command such as `toolkit ds scan snowflake`.
+11. Next, Output the scan to JSON: 
+    ```
+    toolkit ds show snowflake:scan:latest --format JSON -o
+    ```
 
 ### Exercise 5: Translate MSSQL to Snowflake  (30 min)
 
