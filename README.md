@@ -1,8 +1,8 @@
 # CoCo Hands-On Lab: Snowflake Snowsight
 
-**Duration:** 90 minutes
-**Level:** Intermediate
-**Prerequisites:**
+**Duration:** 90 minutes  
+**Level:** Intermediate  
+**Prerequisites:**  
 * Snowflake account with CoCo enabled
 * phData Toolkit Installed 
   * Follow the steps in /lab/setup/toolkit_install.md
