@@ -263,11 +263,23 @@ toolkit --version
 #### Step 4: dbt Model Creation with Cortex Code
 
 **Example prompt:**
-> *Create the tables in a separate schema, called northwinds_dw, and create a dbt project to populate the those tables.*
+> *Create the tables in a separate schema, called northwinds_dw, and create a dbt project to populate the those tables. Include the `generate_schema_name macro` in the dbt project:
+  ```
+  {% macro generate_schema_name(custom_schema_name, node) -%}
+    {%- if custom_schema_name is none -%}
+        {{ target.schema }}
+    {%- else -%}
+        {{ custom_schema_name | trim }}
+    {%- endif -%}
+  {%- endmacro %}
+  ```
+*
+
+**Why:** dbt's default behavior prepends the profile's schema name to any custom schema you configure, producing names like MYSCHEMA_MYSCHEMA. This macro tells dbt to use schema names exactly as specified.
 
 **Output:** A dbt project with sources, stages, tables, transformations, and DAG.
 
-Note: Check for data in the tables. Sometimes it creates a random extra schema that wasn’t needed.
+**Note:** The dbt run command in Snowflake Workspaces may return a JSON parse error even on success. Check the actual tables in Snowflake (or logs/dbt.log) rather than trusting the terminal output.
 
 ---
 
