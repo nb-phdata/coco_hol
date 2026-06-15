@@ -181,7 +181,7 @@ toolkit --version
       mv rsa_key.p8 ~/.snowflake/keys/
       chmod 600 ~/.snowflake/keys/rsa_key.p8
       ```
-   d. Generate the matching public key from that private key and save it as `rsa_key.pub` in the same folder.
+      d. Generate the matching public key from that private key and save it as `rsa_key.pub` in the same folder.
       ```
       openssl rsa -in ~/.snowflake/keys/rsa_key.p8 -pubout -out ~/.snowflake/keys/rsa_key.pub
       chmod 644 ~/.snowflake/keys/rsa_key.pub
