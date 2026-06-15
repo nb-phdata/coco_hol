@@ -131,7 +131,7 @@ toolkit --version
    ```bash
    cd COCO_HOL
    ```
-7. Install the phData CLI
+7. Install the phData CLI (if you have not done so already):
    ```
    brew install toolkit-cli
    ```
