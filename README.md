@@ -281,6 +281,12 @@ toolkit --version
 
 **Note:** The dbt run command in Snowflake Workspaces may return a JSON parse error even on success. Check the actual tables in Snowflake (or logs/dbt.log) rather than trusting the terminal output.
 
+```
+SELECT TABLE_NAME, ROW_COUNT 
+FROM NORTHWIND.INFORMATION_SCHEMA.TABLES 
+WHERE TABLE_SCHEMA = 'NORTHWINDS_DW';
+```
+
 ---
 
 ## Wrap-Up
