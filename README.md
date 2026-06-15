@@ -100,9 +100,8 @@ By the end of Part 1, you've taken a baseline model notebook, fixed errors, adde
 
 ### Context
 
-Your team has a separate use case where they need to migrate an onprem SQL Server into Snowflake. We have the DDL to create the database and transformation layer, but it's in the MSSQL dialect.
-
-`phData Forge` is an AI-native project delivery system that uses autonomous AI agents to automate code generation, testing, and legacy data migrations. By handling the heavy lifting of pipeline development, it shifts human data engineers into role-focused validators to compress project timelines by up to 70%
+The purpose of this Cortex Code (CoCo) demo is to walk through a realistic, AI-augmented data engineering workflow on top of the classic Northwinds dataset. We’ll start by automatically profiling the environment using documentation gathering and a phData Toolkit-driven DDL scan, then use Cortex Code to perform interactive database discovery. This combination is meant to show how you can quickly move from “what’s in this source system?” to a clear understanding of key entities, relationships, and business processes without spending days spelunking information_schema and legacy reports.
+From there, the session will focus on turning that understanding into actionable assets: we’ll guide CoCo through designing a dimensional model and generating a dbt project. By the end, attendees should see Cortex Code not as a toy chatbot, but as a practical co-pilot for metadata discovery, modeling, transformation, and lightweight application scaffolding—all within Snowflake.
 
 ### Open Terminal and Verify phData Toolkit CLI
 
