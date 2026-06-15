@@ -246,11 +246,11 @@ toolkit --version
 #### Step 2: Ask Database Discovery Questions with Cortex Code
 
 **Top Questions to Ask:**
-> *What business process does this data represent?*
-> *What numeric measures exist that represent performance or activity?*
-> *What is the lowest level of detail captured by the primary transaction tables?*
-> *Which entities appear across multiple business processes and would likely become conformed and shared dimensions?*
-> *Which date should be considered the primary reference point for a "daily" or "monthly" report?*
+> *What business process does this data represent?* 
+> *What numeric measures exist that represent performance or activity?* 
+> *What is the lowest level of detail captured by the primary transaction tables?* 
+> *Which entities appear across multiple business processes and would likely become conformed and shared dimensions?* 
+> *Which date should be considered the primary reference point for a "daily" or "monthly" report?* 
 > *Which attributes might change over time but still need historical tracking?* 
 
 #### Step 3: Data Model Design with Cortex Code
