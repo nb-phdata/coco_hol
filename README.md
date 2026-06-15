@@ -130,8 +130,9 @@ toolkit --version
 1. Log into Snowsight
 2. Navigate to **Projects > Workspaces** and create a new Notebook
 3. Prompt CoCo to use the same GIT API Integration to import and execute `northwind_setup.sql` to create the required database, schema, and sample data: `https://github.com/nb-phdata/coco_hol/blob/main/lab/setup/setup.sql`
-4. Open your terminal
-5. Navigate to your project directory:
+4. Upload the business PDF `northwind.pdf` into a Snowflake internal stage via CoCo
+5. Open your terminal
+6. Navigate to your project directory:
    ```bash
    cd COCO_HOL
    ```
