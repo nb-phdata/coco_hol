@@ -150,8 +150,8 @@ toolkit --version
    toolkit init
    ```
 11. Now we will configure the phData Toolkit to Snowflake and the Northwinds database:
-   a. Open `toolkit.conf`
-   b. Add the following connection:
+   - Open `toolkit.conf`
+   - Add the following connection:
       ```
       connections {
         snowflake {
@@ -174,36 +174,36 @@ toolkit --version
         }
       }
       ```
-   c. Generate a 2048-bit RSA private key in PKCS#8 format and store it in a secure local folder such as `~/.snowflake/keys/rsa_key.p8`.
+   - Generate a 2048-bit RSA private key in PKCS#8 format and store it in a secure local folder such as `~/.snowflake/keys/rsa_key.p8`.
       ```
       openssl genrsa 2048 | openssl pkcs8 -topk8 -v2 des3 -inform PEM -out rsa_key.p8
       mkdir -p ~/.snowflake/keys
       mv rsa_key.p8 ~/.snowflake/keys/
       chmod 600 ~/.snowflake/keys/rsa_key.p8
       ```
-      d. Generate the matching public key from that private key and save it as `rsa_key.pub` in the same folder.
+   - Generate the matching public key from that private key and save it as `rsa_key.pub` in the same folder.
       ```
       openssl rsa -in ~/.snowflake/keys/rsa_key.p8 -pubout -out ~/.snowflake/keys/rsa_key.pub
       chmod 644 ~/.snowflake/keys/rsa_key.pub
       ```
-   e. Assign the public key to the Snowflake user with `ALTER USER ... SET RSA_PUBLIC_KEY='...'`, using only the body of the public key and excluding the `BEGIN/END PUBLIC KEY` lines.
+   - Assign the public key to the Snowflake user with `ALTER USER ... SET RSA_PUBLIC_KEY='...'`, using only the body of the public key and excluding the `BEGIN/END PUBLIC KEY` lines.
       ```
       PUBK=$(grep -v "PUBLIC KEY" ~/.snowflake/keys/rsa_key.pub | tr -d '\n')
       echo "$PUBK"
       ```
-   f. Now, enter into the Snowsight webpage and prompt CoCo:
+   - Now, enter into the Snowsight webpage and prompt CoCo:
       ```
       ALTER USER <YOUR_SNOWFLAKE_USER> SET RSA_PUBLIC_KEY='paste_one_line_value_here';
       ```
-   g. Verify the key pair by comparing the Snowflake user fingerprint from `DESC USER <user>` to the fingerprint generated locally from `rsa_key.pub`:
+   - Verify the key pair by comparing the Snowflake user fingerprint from `DESC USER <user>` to the fingerprint generated locally from `rsa_key.pub`:
       ```
       DESC USER YOUR_SNOWFLAKE_USER;
       ```
-   h. In the terminal, ensure the same value is returned, using:
+   - In the terminal, ensure the same value is returned, using:
       ```
       openssl rsa -pubin -in ~/.snowflake/keys/rsa_key.pub -outform DER | openssl dgst -sha256 -binary | openssl enc -base64
       ```
-   i. Best practice is to use environment variables rather than hard-coding the secrets in `toolkit.conf`.
+   - Best practice is to use environment variables rather than hard-coding the secrets in `toolkit.conf`.
       ```
       export PRIVATE_KEY_FILE="$HOME/.snowflake/keys/rsa_key.p8"
       export PRIVATE_KEY_FILE_PWD="your-passphrase"
