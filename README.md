@@ -273,7 +273,6 @@ toolkit --version
     {%- endif -%}
   {%- endmacro %}
   ```
-*
 
 **Why:** dbt's default behavior prepends the profile's schema name to any custom schema you configure, producing names like MYSCHEMA_MYSCHEMA. This macro tells dbt to use schema names exactly as specified.
 
