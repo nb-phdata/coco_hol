@@ -231,56 +231,55 @@ toolkit --version
     ```
     toolkit ds show snowflake:scan:latest --format JSON -o
     ```
+    
+#### Step 1: Feed Information into Cortex Code
 
-### Exercise 5: Translate MSSQL to Snowflake  (30 min)
+**Upload top_queries.sql, your Snowflake scan, and the business documentation into CoCo with the prompt:**
+> *Use the top_queries.sql, northwind.pdf, and snowflake_scan files to answer my following questions. Act like this is an actual business and not the sample database.* 
 
-#### Step 1: List Skills
+#### Step 2: Ask Database Discovery Questions with Cortex Code
 
-**Example prompt:**
-> *Can you give me a couple sentence breakdown of the skills that are locally available to you?* 
+**Top Questions to Ask:**
+> *What business process does this data represent?*
+> *What numeric measures exist that represent performance or activity?*
+> *What is the lowest level of detail captured by the primary transaction tables?*
+> *Which entities appear across multiple business processes and would likely become conformed and shared dimensions?*
+> *Which date should be considered the primary reference point for a "daily" or "monthly" report?*
+> *Which attributes might change over time but still need historical tracking?* 
 
-These are all the skills included with phData Forge.
-
-#### Step 2: Explain the SQL Translate Skill
-
-**Example prompt:**
-> *What does the sql translate skill do?* 
-
-Explains about SQL translate 
-
-#### Step 3: Configure the phData Toolkit
-
-**Example prompt:**
-> *Use the toolkit-configure skill to configure the Toolkit with our current Snowflake connection* 
-
-Takes the current Snowflake connection for Cortex and uses it to configure the phData Toolkit
-
-#### Step 4: Translate the Script
+#### Step 3: Data Model Design with Cortex Code
 
 **Example prompt:**
-> *Please use the sql translate skill to translate medallion_financial_services.sql from sql server to Snowflake, output it to a seperate file* 
+> *Based on the information we gathered and questions you answered, build a Kimball data model, and leave the tables empty until I validate it.* 
 
-#### Step 5: Optimize the Script for Snowflake
+**Output:** Database created, with empty dim and fact tables.
+
+#### Step 4: dbt Model Creation with Cortex Code
+
+**Create a network rule for dbt, if not already there:**
+```
+CREATE OR REPLACE NETWORK RULE my_dbt_network_rule
+  MODE = EGRESS
+  TYPE = HOST_PORT
+  -- Minimal URL allowlist that is required for dbt deps
+  VALUE_LIST = (
+    'hub.getdbt.com',
+    'codeload.github.com'
+    );
+
+-- Create EXTERNAL ACCESS INTEGRATION for dbt access to external dbt package locations
+
+CREATE OR REPLACE EXTERNAL ACCESS INTEGRATION my_dbt_ext_access
+  ALLOWED_NETWORK_RULES = (my_dbt_network_rule)
+  ENABLED = TRUE;
+```
 
 **Example prompt:**
-> *Identify and explain any performance issues the translated output file will have on snowflake, ranking them critical, high, medium and low priority* 
+> *Create the tables in a separate schema, called northwinds_dw, and create a dbt project to populate the those tables.*
 
-**Example prompt:**
-> *Please fix the critical and high priority performance issues* 
+**Output:** A dbt project with sources, stages, tables, transformations, and DAG.
 
-#### Step 6: Validate the Script
-
-**Example prompt:**
-> *Run medallion_financial_services_snowflake.sql in Snowflake using ds-exec skill to validate it runs , and fix any issues if any occur* 
-
-CoCo will run the scripts using the Toolkit execute skill and validate that there were no errors.
-
-### Exercise 6: Convert Stored Procedures to dbt Models  (10 min)
-
-#### Step 1: Convert Transformation Layer to dbt Models (switch back to UI)
-
-**Example prompt:**
-> *Stored procedures are too cumbersome, lets convert those transformation procedures in the financialservicesdb to dbt models* 
+Note: Check for data in the tables.
 
 ---
 
