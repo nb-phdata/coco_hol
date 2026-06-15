@@ -174,19 +174,19 @@ toolkit --version
         }
       }
       ```
-   c. Generate a 2048-bit RSA private key in PKCS#8 format and store it in a secure local folder such as ~/.snowflake/keys/rsa_key.p8.
+   c. Generate a 2048-bit RSA private key in PKCS#8 format and store it in a secure local folder such as `~/.snowflake/keys/rsa_key.p8`.
       ```
       openssl genrsa 2048 | openssl pkcs8 -topk8 -v2 des3 -inform PEM -out rsa_key.p8
       mkdir -p ~/.snowflake/keys
       mv rsa_key.p8 ~/.snowflake/keys/
       chmod 600 ~/.snowflake/keys/rsa_key.p8
       ```
-   d. Generate the matching public key from that private key and save it as rsa_key.pub in the same folder.
+   d. Generate the matching public key from that private key and save it as `rsa_key.pub` in the same folder.
       ```
       openssl rsa -in ~/.snowflake/keys/rsa_key.p8 -pubout -out ~/.snowflake/keys/rsa_key.pub
       chmod 644 ~/.snowflake/keys/rsa_key.pub
       ```
-   e. Assign the public key to the Snowflake user with ALTER USER ... SET RSA_PUBLIC_KEY='...', using only the body of the public key and excluding the BEGIN/END PUBLIC KEY lines.
+   e. Assign the public key to the Snowflake user with `ALTER USER ... SET RSA_PUBLIC_KEY='...'`, using only the body of the public key and excluding the `BEGIN/END PUBLIC KEY` lines.
       ```
       PUBK=$(grep -v "PUBLIC KEY" ~/.snowflake/keys/rsa_key.pub | tr -d '\n')
       echo "$PUBK"
@@ -195,7 +195,7 @@ toolkit --version
       ```
       ALTER USER <YOUR_SNOWFLAKE_USER> SET RSA_PUBLIC_KEY='paste_one_line_value_here';
       ```
-   g. Verify the key pair by comparing the Snowflake user fingerprint from DESC USER <user> to the fingerprint generated locally from rsa_key.pub:
+   g. Verify the key pair by comparing the Snowflake user fingerprint from `DESC USER <user>` to the fingerprint generated locally from `rsa_key.pub`:
       ```
       DESC USER YOUR_SNOWFLAKE_USER;
       ```
