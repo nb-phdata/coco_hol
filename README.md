@@ -55,7 +55,7 @@ Your team has a Python notebook that loads sales data, engineers features, and t
 3. Prompt CoCo to create a GIT API Integration and import the provided notebook into a new Workspace:
    `https://github.com/nb-phdata/coco_hol/blob/main/lab/part1_notebook/sales_churn_model.ipynb`
 5. Prompt CoCo to select the **Python 3 (Anaconda)** kernel and attach a warehouse
-6. Prompt CoCo to use the same GIT API Integration to import and execute `setup.sql` to create the required database, schema, and sample data: https://github.com/nb-phdata/coco_hol/blob/main/lab/setup/setup.sql
+6. Prompt CoCo to use the same GIT API Integration to import and execute `ml_setup.sql` to create the required database, schema, and sample data: https://github.com/nb-phdata/coco_hol/blob/main/lab/setup/setup.sql
 
 ### Exercise 0: Explain the Notebook (1 min)
 
@@ -103,6 +103,18 @@ By the end of Part 1, you've taken a baseline model notebook, fixed errors, adde
 The purpose of this Cortex Code (CoCo) demo is to walk through a realistic, AI-augmented data engineering workflow on top of the classic Northwinds dataset. We’ll start by automatically profiling the environment using documentation gathering and a phData Toolkit-driven DDL scan, then use Cortex Code to perform interactive database discovery. This combination is meant to show how you can quickly move from “what’s in this source system?” to a clear understanding of key entities, relationships, and business processes without spending days spelunking information_schema and legacy reports.
 From there, the session will focus on turning that understanding into actionable assets: we’ll guide CoCo through designing a dimensional model and generating a dbt project. By the end, attendees should see Cortex Code not as a toy chatbot, but as a practical co-pilot for metadata discovery, modeling, transformation, and lightweight application scaffolding—all within Snowflake.
 
+### Agenda
+
+Documentation Gathering and Toolkit Scan
+Northwinds Database Discovery with Cortex Code (COCO)
+Creation of Dimensional Model using COCO
+Creation of dbt Project using COCO
+
+phData toolkit configured to Snowflake and Northwinds database
+Top queries consolidated into one sql file as well as a business information pdf
+Upload the business information pdf into a snowflake internal stage in the Northwinds schema
+
+
 ### Open Terminal and Verify phData Toolkit CLI
 
 ```bash
@@ -111,20 +123,23 @@ toolkit --version
 
 ### Setup (5 min)
 
-1. Open your terminal
-2. Navigate to your project directory:
+1. Log into Snowsight
+2. Navigate to **Projects > Workspaces** and create a new Notebook
+3. Prompt CoCo to use the same GIT API Integration to import and execute `northwind_setup.sql` to create the required database, schema, and sample data: https://github.com/nb-phdata/coco_hol/blob/main/lab/setup/setup.sql
+4. Open your terminal
+5. Navigate to your project directory:
    ```bash
    cd COCO_HOL
    ```
-3. Create a new toolkit instance within the directory:
+6. Create a new toolkit instance within the directory:
    ```bash
    toolkit init
    ```
-4. Start CoCo:
+7. Start CoCo:
    ```bash
    cortex
    ```
-5. Create a new connection:
+8. Create a new connection:
 * **First Time Opening Cortex Will Trigger the Set Up Wizard**
    * Follow the prompts to configure the connection.
 * **Additional connections can be added by manually adding them to the configuration file:**
