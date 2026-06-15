@@ -31,12 +31,16 @@ This hands-on lab teaches you to use **CoCo** in Snowflake Snowsight to accelera
 └── .cortex/
     ├── skills/
           ├── toolkit-configure
-            └── SKILL.md   # toolkit configuration skill for CoCo  
+            └── SKILL.md   # Toolkit configuration skill for CoCo  
 └── lab/
     ├── part1_notebook/
     │   └── sales_churn_model.ipynb   # Starter notebook with intentional bugs
+    ├── part2_notebook/
+    │   └── northwind.pdf   # Business info PDF for Part 2
+    │   └── top_queries.sql   # Consolidated Queries SQL script for Part 2
     ├── setup/
-        └── setup.sql   # SQL Script for part 1
+        └── ml_setup.sql   # SQL script for Part 1
+        └── northwind_setup.sql   # SQL script for Part 2
         └── toolkit_install.md   # Toolkit Installation readme
 ```
 
