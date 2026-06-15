@@ -125,18 +125,19 @@ Upload the business information pdf into a snowflake internal stage in the North
 toolkit --version
 ```
 
-### Setup (5 min)
+### Setup (15 min)
 
 1. Log into Snowsight
 2. Navigate to **Projects > Workspaces** and create a new Notebook
 3. Prompt CoCo to use the same GIT API Integration to import and execute `northwind_setup.sql` to create the required database, schema, and sample data: `https://github.com/nb-phdata/coco_hol/blob/main/lab/setup/setup.sql`
-4. Upload the business PDF `northwind.pdf` into a Snowflake internal stage via CoCo
-5. Open your terminal
-6. Navigate to your project directory:
+5. Prompt CoCo to use the same GIT API Integration to upload the business PDF `northwind.pdf` into a Snowflake internal stage via CoCo
+6. Prompt CoCo to use the same GIT API Integration to import `top_queries.sql`
+7. Open your terminal
+8. Navigate to your project directory:
    ```bash
    cd COCO_HOL
    ```
-7. Install the phData CLI (if you have not done so already):
+9. Install the phData CLI (if you have not done so already):
    ```
    brew install toolkit-cli
    ```
@@ -144,11 +145,11 @@ toolkit --version
    ```
    brew tap phdata/toolkit
    ```
-8. Create a new toolkit instance within the directory:
+10. Create a new toolkit instance within the directory:
    ```bash
    toolkit init
    ```
-9. Now we will configure the phData Toolkit to Snowflake and the Northwinds database:
+11. Now we will configure the phData Toolkit to Snowflake and the Northwinds database:
    a. Open `toolkit.conf`
    b. Add the following connection:
       ```
@@ -231,8 +232,8 @@ toolkit --version
         }
       }
      ```
-10. Validate the setup by running a Toolkit command such as `toolkit ds scan snowflake`.
-11. Next, Output the scan to JSON: 
+11. Validate the setup by running a Toolkit command such as `toolkit ds scan snowflake`.
+12. Next, Output the scan to JSON: 
     ```
     toolkit ds show snowflake:scan:latest --format JSON -o
     ```
