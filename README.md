@@ -262,30 +262,12 @@ toolkit --version
 
 #### Step 4: dbt Model Creation with Cortex Code
 
-**Create a network rule for dbt, if not already there:**
-```
-CREATE OR REPLACE NETWORK RULE my_dbt_network_rule
-  MODE = EGRESS
-  TYPE = HOST_PORT
-  -- Minimal URL allowlist that is required for dbt deps
-  VALUE_LIST = (
-    'hub.getdbt.com',
-    'codeload.github.com'
-    );
-
--- Create EXTERNAL ACCESS INTEGRATION for dbt access to external dbt package locations
-
-CREATE OR REPLACE EXTERNAL ACCESS INTEGRATION my_dbt_ext_access
-  ALLOWED_NETWORK_RULES = (my_dbt_network_rule)
-  ENABLED = TRUE;
-```
-
 **Example prompt:**
 > *Create the tables in a separate schema, called northwinds_dw, and create a dbt project to populate the those tables.*
 
 **Output:** A dbt project with sources, stages, tables, transformations, and DAG.
 
-Note: Check for data in the tables.
+Note: Check for data in the tables. Sometimes it creates a random extra schema that wasn’t needed.
 
 ---
 
