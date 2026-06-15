@@ -240,7 +240,7 @@ toolkit --version
     
 #### Step 1: Feed Information into Cortex Code
 
-**Upload top_queries.sql, your Snowflake scan, and the business documentation into CoCo with the prompt:**
+**Upload your Snowflake scan into CoCo with the prompt:**
 > *Use the top_queries.sql, northwind.pdf, and snowflake_scan files to answer my following questions. Act like this is an actual business and not the sample database.* 
 
 #### Step 2: Ask Database Discovery Questions with Cortex Code
