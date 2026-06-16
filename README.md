@@ -207,7 +207,7 @@ toolkit --version
       ```
       export PRIVATE_KEY_FILE="$HOME/.snowflake/keys/rsa_key.p8"
       export PRIVATE_KEY_FILE_PWD="your-passphrase"
-      export CONNECTION_ROLE="ACCOUNTADMIN"
+      export CONNECTION_ROLE="ACCOUNTADMIN" or <your-role>
       ```
       Your `toolkit.conf` should now look like:
       ```
