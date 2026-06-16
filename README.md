@@ -265,7 +265,7 @@ toolkit --version
 
 #### Step 4: dbt Model Creation with Cortex Code
 
-> *Create a network rule for dbt if not already there:
+Create a network rule for dbt if not already there:
 ```
 CREATE OR REPLACE NETWORK RULE my_dbt_network_rule
   MODE = EGRESS
@@ -277,7 +277,7 @@ CREATE OR REPLACE NETWORK RULE my_dbt_network_rule
     );
 ```
 
-> *Include the `generate_schema_name macro` in the dbt project:
+Include the `generate_schema_name macro` in the dbt project:
   ```
   {% macro generate_schema_name(custom_schema_name, node) -%}
     {%- if custom_schema_name is none -%}
