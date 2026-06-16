@@ -129,8 +129,8 @@ toolkit --version
 
 1. Log into Snowsight
 2. Prompt CoCo to use the same GIT API Integration to import and execute `northwind_setup.sql` to create the required database, schema, and sample data
-3. Prompt CoCo to use the same GIT API Integration to upload the business PDF `northwind.pdf` into a Snowflake internal stage
-4. Prompt CoCo to generate sample data to populate the tables it just created.
+3. Prompt CoCo to generate sample data to populate the tables it just created.
+4. Prompt CoCo to use the same GIT API Integration to upload the business PDF `northwind.pdf` into a Snowflake internal stage
 5. Prompt CoCo to use the same GIT API Integration to import `top_queries.sql`
 6. Open your terminal
 7. Navigate to your project directory:
