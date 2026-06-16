@@ -56,8 +56,8 @@ Your team has a Python notebook that loads sales data, engineers features, and t
 
 1. Log into Snowsight
 2. Navigate to **Projects > Workspaces**
-3. Prompt CoCo to create a GIT API Integration and import the provided notebook into a new Workspace:
-   `https://github.com/nb-phdata/coco_hol/blob/main/lab/part1_notebook/sales_churn_model.ipynb`
+3. Prompt CoCo to create a GIT API Integration, using: `https://github.com/nb-phdata/coco_hol`
+4. Prompt CoCo to import the provided notebook into a new Workspace: `sales_churn_model.ipynb`
 5. Prompt CoCo to select the **Python 3 (Anaconda)** kernel and attach a warehouse
 6. Prompt CoCo to use the same GIT API Integration to import and execute `ml_setup.sql` to create the required database, schema, and sample data: https://github.com/nb-phdata/coco_hol/blob/main/lab/setup/setup.sql
 
