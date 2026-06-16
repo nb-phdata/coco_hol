@@ -199,7 +199,8 @@ toolkit --version
       ```
    - Verify the key pair by comparing the Snowflake user fingerprint from `DESC USER <user>` to the fingerprint generated locally from `rsa_key.pub`:
       ```
-      DESC USER YOUR_SNOWFLAKE_USER;
+      DESC USER <YOUR_SNOWFLAKE_USER>;
+      SELECT SUBSTR((SELECT "value" FROM $1 WHERE "property" = 'RSA_PUBLIC_KEY_FP'), LEN('SHA256:') + 1) AS key;
       ```
    - In the terminal, ensure the same value is returned, using:
       ```
