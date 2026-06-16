@@ -19,7 +19,7 @@ This hands-on lab teaches you to use **CoCo** in Snowflake Snowsight to accelera
 | Part | Environment | What You'll Do | Time |
 |------|-------------|----------------|------|
 | **1** | Snowsight (Web IDE) | Debug and extend a Python notebook that builds an ML model on sales data | 30 min |
-| **2** | Snowsight (Web IDE) | Understand what is in a source system using phData Forge and develop dbt Models using CoCo | 45 min |
+| **2** | Snowsight (Web IDE) | Data discovery using phData Forge and dbt model development using CoCo | 45 min |
 
 ---
 
