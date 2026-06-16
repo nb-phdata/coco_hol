@@ -265,8 +265,19 @@ toolkit --version
 
 #### Step 4: dbt Model Creation with Cortex Code
 
-**Example prompt:**
-> *Create the tables in a separate schema, called northwinds_dw, and create a dbt project to populate the those tables. Include the `generate_schema_name macro` in the dbt project:
+> *Create a network rule for dbt if not already there:
+```
+CREATE OR REPLACE NETWORK RULE my_dbt_network_rule
+  MODE = EGRESS
+  TYPE = HOST_PORT
+  -- Minimal URL allowlist that is required for dbt deps
+  VALUE_LIST = (
+    'hub.getdbt.com',
+    'codeload.github.com'
+    );
+```
+
+> *Include the `generate_schema_name macro` in the dbt project:
   ```
   {% macro generate_schema_name(custom_schema_name, node) -%}
     {%- if custom_schema_name is none -%}
@@ -276,8 +287,10 @@ toolkit --version
     {%- endif -%}
   {%- endmacro %}
   ```
-
 **Why:** dbt's default behavior prepends the profile's schema name to any custom schema you configure, producing names like MYSCHEMA_MYSCHEMA. This macro tells dbt to use schema names exactly as specified.
+
+**Example prompt:**
+> *Create the tables in a separate schema, called northwinds_dw, and create a dbt project to populate the those tables. 
 
 **Output:** A dbt project with sources, stages, tables, transformations, and DAG.
 
