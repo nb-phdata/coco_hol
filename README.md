@@ -183,8 +183,10 @@ toolkit --version
       ```
    - Generate the matching public key from that private key and save it as `rsa_key.pub` in the same folder.
       ```
-      openssl rsa -in ~/.snowflake/keys/rsa_key.p8 -pubout -out ~/.snowflake/keys/rsa_key.pub
-      chmod 644 ~/.snowflake/keys/rsa_key.pub
+      openssl rsa \
+       -in ~/.snowflake/keys/rsa_key.p8 \
+       -pubout \
+       -out ~/.snowflake/keys/rsa_key.pub
       ```
    - Assign the public key to the Snowflake user with `ALTER USER ... SET RSA_PUBLIC_KEY='...'`, using only the body of the public key and excluding the `BEGIN/END PUBLIC KEY` lines.
       ```
