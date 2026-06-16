@@ -157,7 +157,7 @@ toolkit --version
         snowflake {
           url = "jdbc:snowflake://<org-name>-<account-name>.snowflakecomputing.com"
           properties {
-            user = "<your_snowflake_login_name"
+            user = "<your_snowflake_login_name>"
             role = "ACCOUNTADMIN" or <your-role>
             warehouse = "COMPUTE_WH" or <your-warehouse>
             private_key_file = ${PRIVATE_KEY_FILE}
